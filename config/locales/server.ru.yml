@@ -1547,6 +1547,7 @@ ru:
   activemodel:
     errors:
       <<: *errors
+      first_like:
       name: Первый Лайк!
       description: За лайк в посте
       long_description: |
