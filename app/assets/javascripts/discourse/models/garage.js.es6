@@ -1,5 +1,8 @@
 import { ajax } from 'discourse/lib/ajax';
+/**
+Наверно это мусор
 import BadgeGrouping from 'discourse/models/badge-grouping';
+**/
 import RestModel from 'discourse/models/rest';
 
 const Garage = RestModel.extend({
