@@ -86,9 +86,11 @@ GarageBadge.reopenClass({
   **/
   findByUsername: function(username, options) {
     var url = "/user-garage/" + username + ".json";
+    /** выкл модель групинг
     if (options && options.grouped) {
       url += "?grouped=true";
     }
+    **/
     return ajax(url).then(function(json) {
       return UserGarage.createFromJson(json);
     });
