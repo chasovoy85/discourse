@@ -78,6 +78,7 @@ export default function() {
     });
 
     this.route('badges');
+    this.route('garage');
     this.route('flaggedPosts', { path: '/flagged-posts' });
     this.route('deletedPosts', { path: '/deleted-posts' });
 
