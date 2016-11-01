@@ -3,7 +3,7 @@ import UserGarage from 'discourse/models/user-garage';
 
 export default Discourse.Route.extend(ViewingActionType, {
   model() {
-    return UserBadge.findByUsername(this.modelFor("user").get("username_lower"), { grouped: true });
+    return UserGarage.findByUsername(this.modelFor("user").get("username_lower"), { grouped: true });
   },
 
   setupController(controller, model) {

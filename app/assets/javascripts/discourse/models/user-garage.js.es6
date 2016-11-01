@@ -15,7 +15,7 @@ const UserGarage = Discourse.Model.extend({
   }
 });
 
-GarageBadge.reopenClass({
+UserGarage.reopenClass({
 
   createFromJson: function(json) {
     // Create User objects.
