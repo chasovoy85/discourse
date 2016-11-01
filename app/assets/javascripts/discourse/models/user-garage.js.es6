@@ -35,45 +35,25 @@ UserGarage.reopenClass({
     // Create the badges.
     if (json.badges === undefined) { json.badges = []; }
     var badges = {};
-    Badge.createFromJson(json).forEach(function(badge) {
-      badges[badge.get('id')] = badge;
-    });
+    //Garage.createFromJson(json).forEach(function(badge) {
+    //  console.log(badge);
+    //  badges[badge.get('id')] = badge;
+    //});
 
     // Create UserGarage object(s).
-    var userBadges = [];
-    if ("user_badge" in json) {
-      userBadges = [json.user_badge];
-    } else {
-      userBadges = (json.user_badge_info && json.user_badge_info.user_badges) || json.user_badges;
+    var userGarags = [];
+    if ("user_garage" in json) {
+      userGarags = [json.user_garage];
     }
 
-    userBadges = userBadges.map(function(userBadgeJson) {
-      var userBadge = UserGarage.create(userBadgeJson);
+    userGarags = userGarags.map(function(userBadgeJson) {
+      var userGarag = UserGarage.create(userBadgeJson);
 
-      var grantedAtDate = Date.parse(userBadge.get('granted_at'));
-      userBadge.set('grantedAt', grantedAtDate);
-
-      userBadge.set('badge', badges[userBadge.get('badge_id')]);
-      if (userBadge.get('user_id')) {
-        userBadge.set('user', users[userBadge.get('user_id')]);
-      }
-      if (userBadge.get('granted_by_id')) {
-        userBadge.set('granted_by', users[userBadge.get('granted_by_id')]);
-      }
-      if (userBadge.get('topic_id')) {
-        userBadge.set('topic', topics[userBadge.get('topic_id')]);
-      }
-      return userBadge;
+      return userGarag;
     });
 
-    if ("user_badge" in json) {
-      return userBadges[0];
-    } else {
-      if (json.user_badge_info) {
-        userBadges.grant_count = json.user_badge_info.grant_count;
-        userBadges.username = json.user_badge_info.username;
-      }
-      return userBadges;
+    if ("user_garage" in json) {
+      return userGarags[0];
     }
   },
 

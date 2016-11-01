@@ -87,40 +87,9 @@ Garage.reopenClass({
     @returns Array or instance of `Badge` depending on the input JSON
   **/
   createFromJson: function(json) {
-    // Create BadgeType objects.
-    const badgeTypes = {};
-    if ('badge_types' in json) {
-      json.badge_types.forEach(function(badgeTypeJson) {
-        badgeTypes[badgeTypeJson.id] = Ember.Object.create(badgeTypeJson);
-      });
-    }
-
-    const badgeGroupings = {};
-    if ('badge_groupings' in json) {
-      json.badge_groupings.forEach(function(badgeGroupingJson) {
-        badgeGroupings[badgeGroupingJson.id] = BadgeGrouping.create(badgeGroupingJson);
-      });
-    }
-
-    // Create Badge objects.
-    let badges = [];
-    if ("badge" in json) {
-      badges = [json.badge];
-    } else if (json.badges) {
-      badges = json.badges;
-    }
-    badges = badges.map(function(badgeJson) {
-      const badge = Garage.create(badgeJson);
-      badge.set('badge_type', badgeTypes[badge.get('badge_type_id')]);
-      badge.set('badge_grouping', badgeGroupings[badge.get('badge_grouping_id')]);
-      return badge;
-    });
-
-    if ("badge" in json) {
-      return badges[0];
-    } else {
-      return badges;
-    }
+    console.log(json);
+    //Тут надо что-то сделать
+    return json['user_garage'];
   },
 
   /**
